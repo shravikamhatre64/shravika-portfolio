@@ -1,76 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shravika Mhatre</title>
-  <!-- Pixel font -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 2rem;
-      background: #ffddee; /* 🌸 pastel pink */
-      color: black;
-      font-family: 'Arial', sans-serif;
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
-      overflow-x: hidden;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shravika's Pixel Diary</title>
+
+<!-- Pixel font -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+<style>
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: #ffddee;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    cursor: url('https://cur.cursors-4u.net/cursors/cur-9/cur85.cur'), auto;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  /* Container is the "open diary" */
+  .diary-container {
+    display: flex;
+    width: 760px;
+    height: 480px;
+    background: #d6a8b9;
+    border: 8px double #000;
+    border-radius: 30px;
+    box-shadow: 0 0 30px #e58ea1;
+    animation: openBook 1.2s ease forwards;
+    opacity: 0;
+  }
+
+  /* Page styling */
+  .page {
+    background: #fff0f5;
+    width: 50%;
+    margin: 0 1rem;
+    padding: 2rem;
+    box-shadow: inset 3px 3px 10px #f9c1d3, inset -3px -3px 10px #c28ca2;
+    border-radius: 15px;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  h1 {
+    font-size: 14px;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  p {
+    line-height: 1.8;
+    margin: 1rem 0;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: #ffb6c1;
+    border-radius: 10px;
+    box-shadow: 0 4px #d63384;
+    transition: transform 0.2s ease;
+  }
+
+  a:hover {
+    transform: scale(1.05);
+  }
+
+  /* Stickers in corners */
+  .sticker {
+    position: absolute;
+    font-size: 24px;
+    user-select: none;
+  }
+
+  .sticker.top-left {
+    top: 15px;
+    left: 15px;
+  }
+  .sticker.top-right {
+    top: 15px;
+    right: 15px;
+  }
+  .sticker.bottom-left {
+    bottom: 15px;
+    left: 15px;
+  }
+  .sticker.bottom-right {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  /* Page open animation */
+  @keyframes openBook {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) rotateX(90deg);
     }
-
-    h1,p,a .pixel-link {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 1rem;
-      color: black;
-      margin-bottom: 1rem;
+    100% {
+      opacity: 1;
+      transform: scale(1) rotateX(0deg);
     }
+  }
 
-   
-      /* ✨ Falling Stars */
-    .star {
-      position: fixed;
-      top: -10px;
-      width: 5px;
-      height: 5px;
-      background: black;
-      border-radius: 50%;
-      animation: fall linear infinite;
-      z-index: 0;
-    }
+  /* Scrollbar style for pages */
+  .page::-webkit-scrollbar {
+    width: 6px;
+  }
+  .page::-webkit-scrollbar-thumb {
+    background-color: #ff9fc1;
+    border-radius: 3px;
+  }
+</style>
 
-    @keyframes fall {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(100vh); }
-    }
+</head>
+<body>
 
-   
-  <h1>Hey, I'm Shravika <3 </h1>
+<div class="diary-container" aria-label="Pixel diary open book">
+  <!-- Left Page -->
+  <section class="page" aria-label="Left diary page">
+    <div class="sticker top-left">💌</div>
+    <h1>Hey, I'm Shravika 💫</h1>
+    <p><strong>🚀 BTech in VLSI | Honours in GenAI + Quantum Computing</strong></p>
+    <p>I’m deeply passionate about solving real-world problems at the intersection of hardware and intelligence. Currently exploring VLSI design, full-stack development, and cutting-edge AI.</p>
+  </section>
 
+  <!-- Right Page -->
+  <section class="page" aria-label="Right diary page">
+    <div class="sticker top-right">☁️</div>
+    <p>I love building, learning fast, and working on ideas that can scale.</p>
+    <p>📫 Reach out: <a href="https://www.linkedin.com/in/shravika-mhatre-1364bb321/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+    <p>🛠️ Tech so far: HTML, CSS, Git (learning JS, React, and Python)</p>
+    <div class="sticker bottom-right">🧸</div>
+  </section>
+</div>
 
-  <p><strong>🚀 BTech in VLSI | Honours in GenAI & Quantum Computing</strong></p>
-  <p>I’m deeply passionate about solving real-world problems at the intersection of hardware and intelligence. Currently exploring VLSI design, full-stack development, and cutting-edge AI.</p>
-  <p>I love building, learning fast, and working on ideas that can scale.</p>
-
-  <!-- 🔗 LinkedIn in Pixel Font -->
-  <p class="pixel-link">📫 <a href="https://www.linkedin.com/in/shravika-mhatre-1364bb321/" target="_blank">LinkedIn</a></p>
-
-  <p>🛠️ Tech so far: HTML, CSS, C, C++, Python Git</p>
-
-  <!-- ✨ Falling Stars Script -->
-  <script>
-    function createStar() {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      document.body.appendChild(star);
-      setTimeout(() => { star.remove(); }, 5000);
-    }
-    setInterval(createStar, 150);
-  </script>
 </body>
 </html>
+
 
 
 
