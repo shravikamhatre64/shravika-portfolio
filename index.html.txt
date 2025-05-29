@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shravika Mhatre</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      color: #333;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      color: #5f27cd;
+    }
+    p {
+      line-height: 1.6;
+    }
+    a {
+      color: #341f97;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hey, I'm Shravika 👋</h1>
+  <p><strong>🚀 BTech in VLSI | Honours in GenAI + Quantum Computing</strong></p>
+  <p>I’m deeply passionate about solving real-world problems at the intersection of hardware and intelligence. Currently exploring VLSI design, full-stack development, and cutting-edge AI.</p>
+  <p>I love building, learning fast, and working on ideas that can scale.</p>
+  <p>📫 Reach out: <a href="https://www.linkedin.com/in/shravika-mhatre-1364bb321/">LinkedIn</a></p>
+  <p>🛠️ Tech so far: HTML, CSS, Git (learning JS, React, and Python)</p>
+</body>
+</html>
