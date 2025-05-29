@@ -1,205 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shravika's Pixel Diary</title>
-
-<!-- Pixel font -->
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-
-<style>
-  body {
-    margin: 0;
-    padding: 2rem;
-    background: #000; /* black background */
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
-    cursor: none; /* hide default cursor for sparkle */
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-  }
-
-  /* Container is the "open diary" */
-  .diary-container {
-    display: flex;
-    width: 760px;
-    height: 480px;
-    background: #d6a8b9;
-    border: 8px double #000;
-    border-radius: 30px;
-    box-shadow: 0 0 30px #e58ea1;
-    animation: openBook 1.2s ease forwards;
-    opacity: 0;
-    position: relative;
-    z-index: 10;
-  }
-
-  /* Page styling */
-  .page {
-    background: #fff0f5;
-    width: 50%;
-    margin: 0 1rem;
-    padding: 2rem;
-    box-shadow: inset 3px 3px 10px #f9c1d3, inset -3px -3px 10px #c28ca2;
-    border-radius: 15px;
-    position: relative;
-    overflow-y: auto;
-  }
-
-  h1 {
-    font-size: 14px;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #000;
-  }
-
-  p {
-    line-height: 1.8;
-    margin: 1rem 0;
-    color: #000;
-  }
-
-  a {
-    color: black;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 0.5rem;
-    padding: 0.4rem 1rem;
-    background: #ffb6c1;
-    border-radius: 10px;
-    box-shadow: 0 4px #d63384;
-    transition: transform 0.2s ease;
-  }
-
-  a:hover {
-    transform: scale(1.05);
-  }
-
-  /* Stickers in corners */
-  .sticker {
-    position: absolute;
-    font-size: 24px;
-    user-select: none;
-  }
-
-  .sticker.top-left {
-    top: 15px;
-    left: 15px;
-  }
-  .sticker.top-right {
-    top: 15px;
-    right: 15px;
-  }
-  .sticker.bottom-left {
-    bottom: 15px;
-    left: 15px;
-  }
-  .sticker.bottom-right {
-    bottom: 15px;
-    right: 15px;
-  }
-
-  /* Page open animation */
-  @keyframes openBook {
-    0% {
-      opacity: 0;
-      transform: scale(0.8) rotateX(90deg);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shravika's Diary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Gloria Hallelujah', cursive;
+      background: linear-gradient(to bottom right, #ffd6ec, #ffe6f7);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
     }
-    100% {
-      opacity: 1;
-      transform: scale(1) rotateX(0deg);
+
+    .sparkle {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, #ff69b4 0%, #ffc0cb 60%, transparent 100%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: sparkle-fade 1s forwards;
     }
-  }
 
-  /* Scrollbar style for pages */
-  .page::-webkit-scrollbar {
-    width: 6px;
-  }
-  .page::-webkit-scrollbar-thumb {
-    background-color: #ff9fc1;
-    border-radius: 3px;
-  }
-
-  /* Sparkle styles */
-  .sparkle {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    pointer-events: none;
-    background: radial-gradient(circle at center, #ff69b4 0%, #ff69b4 50%, transparent 70%);
-    border-radius: 50%;
-    filter: drop-shadow(0 0 4px #ff69b4);
-    animation: sparkle-fade 1000ms forwards;
-    z-index: 1000;
-  }
-
-  @keyframes sparkle-fade {
-    0% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
+    @keyframes sparkle-fade {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: scale(0.5);
+      }
     }
-    100% {
-      opacity: 0;
-      transform: translateY(-20px) scale(0.5);
-    }
-  }
-</style>
 
+    .book {
+      position: relative;
+      width: 400px;
+      height: 500px;
+      background: pink;
+      border: 8px solid hotpink;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #ff69b4;
+      transition: transform 1s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .book.open {
+      transform: rotateY(180deg);
+    }
+
+    .cover {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.imgur.com/ZAVw7WY.png'); /* placeholder */
+      background-size: cover;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .page {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #fff0f5;
+      border-left: 4px solid hotpink;
+      transform: rotateY(180deg);
+      backface-visibility: hidden;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .sticky {
+      position: absolute;
+      padding: 0.5rem 1rem;
+      background: lightyellow;
+      transform: rotate(-8deg);
+      font-size: 14px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .sticky:hover {
+      transform: rotate(-8deg) scale(1.05);
+    }
+
+    .sticky.about {
+      top: 10px;
+      right: 10px;
+      background: lavender;
+    }
+
+    .sticky.skills {
+      bottom: 20px;
+      left: 10px;
+      background: mintcream;
+    }
+
+    .sticky.experience {
+      bottom: 20px;
+      right: 20px;
+      background: lemonchiffon;
+    }
+  </style>
 </head>
 <body>
+  <div class="book" id="diary">
+    <div class="cover">Shravika's Diary
+      <div class="sticky about">💌 About Me</div>
+      <div class="sticky skills">💻 Skills</div>
+      <div class="sticky experience">💼 Experience</div>
+    </div>
+    <div class="page">
+      <h2>About Me</h2>
+      <p>Write your story here...</p>
+      <h2>Skills</h2>
+      <p>Add skills here...</p>
+      <h2>Experience</h2>
+      <p>Describe experience here...</p>
+    </div>
+  </div>
 
-<div class="diary-container" aria-label="Pixel diary open book">
-  <!-- Left Page -->
-  <section class="page" aria-label="Left diary page">
-    <div class="sticker top-left">💌</div>
-    <h1>Hey, I'm Shravika 💫</h1>
-    <p><strong>🚀 BTech in VLSI | Honours in GenAI & Quantum Computing</strong></p>
-    <p>I’m deeply passionate about solving real-world problems at the intersection of hardware and intelligence. Currently exploring VLSI design, full-stack development, and cutting-edge AI.</p>
-  </section>
+  <script>
+    const diary = document.getElementById('diary');
+    const stickies = document.querySelectorAll('.sticky');
 
-  <!-- Right Page -->
-  <section class="page" aria-label="Right diary page">
-    <div class="sticker top-right">☁️</div>
-    <p>I aspire to learn and build stuff that creates a difference..</p>
-    <p>📫 Reach out: <a href="https://www.linkedin.com/in/shravika-mhatre-1364bb321/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
-    <p>🛠️ Tech so far: HTML, CSS, C, C++, Python.</p>
-    <div class="sticker bottom-right">🧸</div>
-  </section>
-</div>
+    stickies.forEach(note => {
+      note.addEventListener('click', () => {
+        diary.classList.toggle('open');
+      });
+    });
 
-
-
-<script>
-  // Sparkle cursor effect
-  document.body.style.cursor = 'none'; // hide default cursor
-
-  window.addEventListener('mousemove', e => {
-    const sparkle = document.createElement('div');
-    sparkle.classList.add('sparkle');
-    sparkle.style.left = e.clientX + 'px';
-    sparkle.style.top = e.clientY + 'px';
-
-    document.body.appendChild(sparkle);
-
-    setTimeout(() => {
-      sparkle.remove();
-    }, 1000);
-  });
-
-  // Fade in diary container on load (optional)
-  window.addEventListener('load', () => {
-    const diary = document.querySelector('.diary-container');
-    diary.style.opacity = '1';
-  });
-</script>
-
+    window.addEventListener('mousemove', (e) => {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = e.clientX + 'px';
+      sparkle.style.top = e.clientY + 'px';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1000);
+    });
+  </script>
 </body>
 </html>
+
 
 
 
