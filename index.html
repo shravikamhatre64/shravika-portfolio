@@ -7,10 +7,15 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+    /* Reset some defaults */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Press Start 2P', cursive;
-      background: #ffd9e8; /* pastel pink */
-      color: #000;
+      font-family: 'Press Start 2P', cursive !important;
+      background: #ffd9e8 !important; /* pastel pink */
+      color: #000 !important;
       margin: 0;
       padding: 2rem;
       display: flex;
@@ -73,6 +78,7 @@
       font-size: 12px;
       line-height: 1.5;
       border-radius: 8px;
+      font-family: 'Press Start 2P', cursive !important;
     }
 
     /* Left page */
@@ -113,7 +119,7 @@
       background: black;
       color: #ffd9e8;
       border: none;
-      font-family: 'Press Start 2P', cursive;
+      font-family: 'Press Start 2P', cursive !important;
       font-size: 14px;
       padding: 0.5rem 1rem;
       border-radius: 4px;
@@ -125,11 +131,13 @@
       font-size: 16px;
       margin-bottom: 1rem;
       color: #000;
+      font-family: 'Press Start 2P', cursive !important;
     }
     p, a {
       font-size: 10px;
       color: #000;
       text-decoration: none;
+      font-family: 'Press Start 2P', cursive !important;
     }
     a:hover {
       text-decoration: underline;
