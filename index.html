@@ -2,70 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shravika's Pixel Diary</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      background: linear-gradient(135deg, #f8dce2, #fbe7f2);
+      background: linear-gradient(to bottom right, #fcd6e2, #ffeaf4);
       font-family: 'Press Start 2P', cursive;
-      cursor: none;
-      overflow: hidden;
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      cursor: none; /* custom sparkle will replace */
     }
 
     .diary-closed {
+      position: relative;
       width: 400px;
       height: 500px;
-      background: pink;
-      border: 5px double #000;
+      background: #ffc1da;
+      border: 8px double #000;
       border-radius: 20px;
-      position: relative;
-      box-shadow: 0 0 20px #e58ea1;
-      background-image: url('https://i.imgur.com/d2UOE2c.png'); /* placeholder texture */
-      background-size: cover;
-      transition: transform 1s;
-      transform-style: preserve-3d;
-      perspective: 1500px;
+      box-shadow: 8px 8px 0 #c28ca2;
+      transform: perspective(800px) rotateY(-2deg);
     }
 
-    .diary-closed.opened {
-      transform: rotateY(-180deg);
-    }
-
-    .title {
+    .book-spine {
       position: absolute;
-      top: 50%;
+      left: -20px;
+      width: 20px;
+      height: 100%;
+      background: #d692b8;
+      border-right: 4px solid #000;
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+    }
+
+    .page-edges {
+      position: absolute;
+      right: -10px;
+      width: 10px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        #fff,
+        #fff 2px,
+        #f9f9f9 4px
+      );
+      border-left: 1px solid #ccc;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+
+    .diary-title {
+      position: absolute;
+      top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 16px;
-      text-align: center;
       color: #000;
+      text-shadow: 2px 2px #fff;
       background: rgba(255, 255, 255, 0.6);
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #fff3f8;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 4px #e58ea1;
     }
 
     .sticky {
       position: absolute;
       width: 80px;
-      height: 40px;
-      background: lavender;
-      border: 2px dashed #000;
-      transform: rotate(-6deg);
+      height: 50px;
       font-size: 8px;
-      padding: 0.5rem;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: #e3e1ff;
+      border: 1px solid #aaa;
+      transform: rotate(-6deg);
+      box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
       cursor: pointer;
-      box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
+      transition: transform 0.2s ease;
     }
 
     .sticky:hover {
@@ -73,79 +91,44 @@
     }
 
     .sticky:nth-child(2) {
-      top: -20px;
-      right: 30px;
-      background: #e0ffe0;
+      top: 60px;
+      right: -30px;
+      background: #e3e1ff;
     }
 
     .sticky:nth-child(3) {
-      bottom: -20px;
-      left: 20px;
-      background: #fff3b0;
+      top: 200px;
+      right: -25px;
+      background: #d0ffe3;
+      transform: rotate(5deg);
     }
 
     .sticky:nth-child(4) {
-      bottom: -20px;
-      right: 20px;
-      background: #c9c9ff;
+      top: 350px;
+      right: -20px;
+      background: #fff9b5;
+      transform: rotate(-3deg);
     }
 
-    .diary-open {
-      display: none;
-      width: 760px;
-      height: 480px;
-      background: #d6a8b9;
-      border: 8px double #000;
-      border-radius: 30px;
-      box-shadow: 0 0 30px #e58ea1;
-      opacity: 0;
-      animation: openBook 1.2s ease forwards;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-    }
-
-    @keyframes openBook {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8) rotateX(90deg);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1) rotateX(0deg);
-      }
-    }
-
-    .page {
-      background: #fff0f5;
-      width: 50%;
-      margin: 0 1rem;
-      padding: 2rem;
-      box-shadow: inset 3px 3px 10px #f9c1d3, inset -3px -3px 10px #c28ca2;
-      border-radius: 15px;
-      overflow-y: auto;
-    }
-
+    /* Sparkle effect */
     .sparkle {
       position: fixed;
       width: 8px;
       height: 8px;
       pointer-events: none;
-      background: radial-gradient(circle, #ff69b4 0%, transparent 70%);
+      background: radial-gradient(circle, #ff69b4 0%, transparent 60%);
       border-radius: 50%;
+      animation: sparkleFade 1s forwards;
+      z-index: 1000;
       filter: drop-shadow(0 0 4px #ff69b4);
-      animation: sparkle-fade 1000ms forwards;
-      z-index: 999;
     }
 
-    @keyframes sparkle-fade {
-      from {
+    @keyframes sparkleFade {
+      0% {
         opacity: 1;
         transform: translateY(0) scale(1);
       }
-      to {
+      100% {
         opacity: 0;
         transform: translateY(-20px) scale(0.5);
       }
@@ -153,44 +136,37 @@
   </style>
 </head>
 <body>
-  <div class="diary-closed" id="diaryClosed">
-    <div class="title">Shravika's Diary</div>
-    <div class="sticky" onclick="openDiary()">💌 About Me</div>
-    <div class="sticky" onclick="openDiary()">💻 Skills</div>
-    <div class="sticky" onclick="openDiary()">💼 Experience</div>
-  </div>
 
-  <div class="diary-open" id="diaryOpen">
-    <section class="page">
-      <h2>💖 About Me</h2>
-      <p><strong>BTech in VLSI | Honours in GenAI & Quantum Computing</strong></p>
-      <p>Building cool stuff at the edge of hardware and intelligence ✨</p>
-    </section>
-    <section class="page">
-      <h2>💻 Skills & Experience</h2>
-      <p>🛠️ HTML, CSS, C, C++, Python.</p>
-      <p>📫 <a href="https://www.linkedin.com/in/shravika-mhatre-1364bb321/">LinkedIn</a></p>
-    </section>
+  <div class="diary-closed" aria-label="Closed pink pixel diary">
+    <div class="book-spine"></div>
+    <div class="page-edges"></div>
+    <div class="diary-title">Shravika's Diary</div>
+
+    <div class="sticky" onclick="openPage('about')">💌 About Me</div>
+    <div class="sticky" onclick="openPage('skills')">💻 Skills</div>
+    <div class="sticky" onclick="openPage('experience')">💼 Experience</div>
   </div>
 
   <script>
-    // Sparkle trail
-    window.addEventListener('mousemove', e => {
+    // Sparkle trail effect
+    document.addEventListener('mousemove', (e) => {
       const sparkle = document.createElement('div');
-      sparkle.classList.add('sparkle');
-      sparkle.style.left = e.clientX + 'px';
-      sparkle.style.top = e.clientY + 'px';
+      sparkle.className = 'sparkle';
+      sparkle.style.left = `${e.clientX}px`;
+      sparkle.style.top = `${e.clientY}px`;
       document.body.appendChild(sparkle);
       setTimeout(() => sparkle.remove(), 1000);
     });
 
-    function openDiary() {
-      document.getElementById('diaryClosed').style.display = 'none';
-      document.getElementById('diaryOpen').style.display = 'flex';
+    // Placeholder for page opening
+    function openPage(section) {
+      alert(`Flip to "${section}" page! [This is where the animation will go]`);
     }
   </script>
+
 </body>
 </html>
+
 
 
 
