@@ -9,7 +9,8 @@
     body {
       margin: 0;
       padding: 0;
-      background: #f8c1d8;
+      background: url('https://i.ibb.co/4zpjBtW/Studio-Ghibli-Wallpaper.jpg') no-repeat center center fixed;
+      background-size: cover;
       font-family: 'Press Start 2P', cursive;
       color: #fff;
       display: flex;
@@ -17,25 +18,25 @@
       align-items: center;
       height: 100vh;
       overflow: hidden;
-      cursor: url('https://cdn.custom-cursor.com/db/pointer/pink-glitter-pointer.png'), auto;
+      cursor: url('https://cur.cursors-4u.net/anime/ani-12/ani1135.cur'), auto;
     }
 
     .screen {
       width: 750px;
       height: 70vh;
       max-width: 95vw;
-      background: #fff;
+      background: #ffffff;
       padding: 2.5rem;
       color: #000;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border-radius: 24px;
-      box-shadow: 0 0 25px #ff69b4;
+      border-radius: 30px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
       text-align: center;
       position: relative;
-      z-index: 2;
+      z-index: 10;
       overflow: hidden;
     }
 
@@ -51,7 +52,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      z-index: 2;
+      z-index: 10;
     }
 
     .menu button {
@@ -98,41 +99,25 @@
       background: #ff69b4;
     }
 
-    .star {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: #ff69b4;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #ff69b4;
-      animation: fallStar linear infinite;
-      z-index: 1;
-      pointer-events: none;
-    }
 
-    @keyframes fallStar {
-      0% {
-        transform: translateY(-10%) scale(1);
-        opacity: 1;
-      }
       100% {
-        transform: translateY(110%) scale(0.5);
+        transform: translateY(70vh) scale(0.5);
         opacity: 0;
       }
     }
   </style>
 </head>
 <body>
-  <div class="screen">
-    <div id="home">
-      <h1>Hey, I’m Shravika! 💖</h1>
+  <div id="home">
+      <h1 style="text-align: center; width: 100%;">Hey, I’m Shravika! 💖</h1>
       <div class="menu">
         <button onclick="showPage('about')">💌 About Me</button>
         <button onclick="showPage('skills')">💻 Skills</button>
         <button onclick="showPage('experience')">💼 Experience</button>
-      </div>
-    </div>
-    <div id="about" class="page">
+      
+    
+    
+<div id="about" class="page">
       <p>🎓 I’m a B.Tech student at KJ Somaiya College of Engineering, specializing in VLSI and passionately exploring the synergy of tech, creativity, and community.</p>
       <p>💡 I’m the founder of <strong>Asteria Core</strong> — a handmade jewelry brand that’s sold over 1000 pieces! From concept to sale, I’ve loved building it all.</p>
       <p>🌟 Whether it’s leading events, crafting brands, or writing code, I bring heart, hustle, and a whole lot of sparkle to everything I do.</p>
@@ -150,17 +135,6 @@
       <p>📢 <strong>Outreach & Marketing – Adval:</strong> Designed and ran outreach campaigns for 500+ startup founders.</p>
       <button onclick="goBack()">← Go Back</button>
     </div>
-    <script>
-      // Generate sparkly stars inside the screen
-      for (let i = 0; i < 60; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = '-10px';
-        star.style.animationDuration = (Math.random() * 5 + 3) + 's';
-        document.querySelector('.screen').appendChild(star);
-      }
-    </script>
   </div>
   <script>
     function showPage(pageId) {
@@ -176,6 +150,7 @@
   </script>
 </body>
 </html>
+
 
 
 
