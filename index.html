@@ -1,231 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shravika Mhatre</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shravika's Pixel Diary</title>
 
-    * {
-      box-sizing: border-box;
-    }
+<!-- Pixel font -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 
-    body {
-      font-family: 'Press Start 2P', cursive !important;
-      background: #ffd9e8; /* pastel pink */
-      color: #000;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-      text-align: center;
-    }
+<style>
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: #000; /* black background */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    cursor: none; /* hide default cursor for sparkle */
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
 
-    /* Diary-style container */
-    .diary {
-      background: #fffef8; /* soft off-white paper color */
-      border: 3px solid #000;
-      border-radius: 12px;
-      max-width: 700px;
-      width: 90vw;
-      padding: 2rem 2.5rem 2rem 3rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      position: relative;
-      font-size: 12px;
-      line-height: 1.5;
-      color: #000;
-      font-family: 'Press Start 2P', cursive !important;
-      background-image:
-        repeating-linear-gradient(
-          to bottom,
-          transparent,
-          transparent 23px,
-          #e4e1d6 24px
-        );
-      text-align: left;
-      overflow: visible;
-    }
+  /* Container is the "open diary" */
+  .diary-container {
+    display: flex;
+    width: 760px;
+    height: 480px;
+    background: #d6a8b9;
+    border: 8px double #000;
+    border-radius: 30px;
+    box-shadow: 0 0 30px #e58ea1;
+    animation: openBook 1.2s ease forwards;
+    opacity: 0;
+    position: relative;
+    z-index: 10;
+  }
 
-    /* Simulated "spiral notebook" holes on left edge */
-    .diary::before {
-      content: "";
-      position: absolute;
-      left: 0.5rem;
-      top: 1.2rem;
-      bottom: 1.2rem;
-      width: 8px;
-      background:
-        radial-gradient(circle at 50% 10%, #000 4px, transparent 5px),
-        radial-gradient(circle at 50% 30%, #000 4px, transparent 5px),
-        radial-gradient(circle at 50% 50%, #000 4px, transparent 5px),
-        radial-gradient(circle at 50% 70%, #000 4px, transparent 5px),
-        radial-gradient(circle at 50% 90%, #000 4px, transparent 5px);
-      background-repeat: no-repeat;
-      background-size: 100% 20%;
-      background-position: center;
-      pointer-events: none;
-      z-index: 2;
-    }
+  /* Page styling */
+  .page {
+    background: #fff0f5;
+    width: 50%;
+    margin: 0 1rem;
+    padding: 2rem;
+    box-shadow: inset 3px 3px 10px #f9c1d3, inset -3px -3px 10px #c28ca2;
+    border-radius: 15px;
+    position: relative;
+    overflow-y: auto;
+  }
 
-    h1 {
-      font-size: 16px;
-      margin-bottom: 1rem;
-      color: #000;
-      font-family: 'Press Start 2P', cursive !important;
-      text-align: center;
-      position: relative;
-      z-index: 3;
-    }
-    p, a {
-      font-size: 10px;
-      color: #000;
-      font-family: 'Press Start 2P', cursive !important;
-      text-decoration: none;
-      position: relative;
-      z-index: 3;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+  h1 {
+    font-size: 14px;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #000;
+  }
 
-    /* Falling stars background */
-    .star {
-      position: fixed;
-      top: -10px;
-      width: 6px;
-      height: 6px;
-      background: #c71585; /* dark pink */
-      border-radius: 50%;
-      animation: fall 5s linear infinite;
-      opacity: 0.8;
-      filter: drop-shadow(0 0 2px #c71585);
-      z-index: 0;
-    }
-    @keyframes fall {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(110vh) translateX(20px);
-        opacity: 0;
-      }
-    }
+  p {
+    line-height: 1.8;
+    margin: 1rem 0;
+    color: #000;
+  }
 
-    /* Teddy bear icon */
-    .teddy {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      width: 60px;
-      height: 60px;
-      fill: #f5c1d1; /* pastel pink */
-      stroke: #000;
-      stroke-width: 2;
-      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
-      z-index: 4;
-      user-select: none;
-      pointer-events: none;
-    }
+  a {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: #ffb6c1;
+    border-radius: 10px;
+    box-shadow: 0 4px #d63384;
+    transition: transform 0.2s ease;
+  }
 
-    /* Bow icon */
-    .bow {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 50px;
-      height: 50px;
-      fill: #f5c1d1; /* pastel pink */
-      stroke: #000;
-      stroke-width: 2;
-      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
-      z-index: 4;
-      user-select: none;
-      pointer-events: none;
-      transform-origin: center;
-      animation: gentle-sway 4s ease-in-out infinite;
-    }
+  a:hover {
+    transform: scale(1.05);
+  }
 
-    @keyframes gentle-sway {
-      0%, 100% {
-        transform: rotate(-3deg);
-      }
-      50% {
-        transform: rotate(3deg);
-      }
-    }
+  /* Stickers in corners */
+  .sticker {
+    position: absolute;
+    font-size: 24px;
+    user-select: none;
+  }
 
-    /* Responsive */
-    @media (max-width: 640px) {
-      .diary {
-        padding: 1.5rem 2rem 1.5rem 2.5rem;
-        font-size: 9px;
-      }
-      h1 {
-        font-size: 12px;
-      }
-      p, a {
-        font-size: 8px;
-      }
-      .teddy {
-        width: 40px;
-        height: 40px;
-        bottom: 5px;
-        left: 5px;
-      }
-      .bow {
-        width: 35px;
-        height: 35px;
-        top: 5px;
-        right: 5px;
-      }
+  .sticker.top-left {
+    top: 15px;
+    left: 15px;
+  }
+  .sticker.top-right {
+    top: 15px;
+    right: 15px;
+  }
+  .sticker.bottom-left {
+    bottom: 15px;
+    left: 15px;
+  }
+  .sticker.bottom-right {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  /* Page open animation */
+  @keyframes openBook {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) rotateX(90deg);
     }
-  </style>
+    100% {
+      opacity: 1;
+      transform: scale(1) rotateX(0deg);
+    }
+  }
+
+  /* Scrollbar style for pages */
+  .page::-webkit-scrollbar {
+    width: 6px;
+  }
+  .page::-webkit-scrollbar-thumb {
+    background-color: #ff9fc1;
+    border-radius: 3px;
+  }
+
+  /* Sparkle styles */
+  .sparkle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+    background: radial-gradient(circle at center, #ff69b4 0%, #ff69b4 50%, transparent 70%);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 4px #ff69b4);
+    animation: sparkle-fade 1000ms forwards;
+    z-index: 1000;
+  }
+
+  @keyframes sparkle-fade {
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.5);
+    }
+  }
+</style>
+
 </head>
 <body>
-  <div class="diary">
-    <h1>Hey, I'm Shravika 👋</h1>
+
+<div class="diary-container" aria-label="Pixel diary open book">
+  <!-- Left Page -->
+  <section class="page" aria-label="Left diary page">
+    <div class="sticker top-left">💌</div>
+    <h1>Hey, I'm Shravika 💫</h1>
     <p><strong>🚀 BTech in VLSI | Honours in GenAI + Quantum Computing</strong></p>
-    <p>I’m creatively driven and deeply passionate about bridging the worlds of hardware and intelligence. Exploring VLSI design, full-stack development, and AI to carve a unique path that blends both.</p>
-    <p>I love building, learning fast, and turning ideas into reality.</p>
+    <p>I’m deeply passionate about solving real-world problems at the intersection of hardware and intelligence. Currently exploring VLSI design, full-stack development, and cutting-edge AI.</p>
+  </section>
+
+  <!-- Right Page -->
+  <section class="page" aria-label="Right diary page">
+    <div class="sticker top-right">☁️</div>
+    <p>I love building, learning fast, and working on ideas that can scale.</p>
     <p>📫 Reach out: <a href="https://www.linkedin.com/in/shravika-mhatre-1364bb321/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
     <p>🛠️ Tech so far: HTML, CSS, Git (learning JS, React, and Python)</p>
+    <div class="sticker bottom-right">🧸</div>
+  </section>
+</div>
 
-    <!-- Teddy SVG -->
-    <svg class="teddy" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <circle cx="32" cy="32" r="18" />
-      <circle cx="18" cy="18" r="6" />
-      <circle cx="46" cy="18" r="6" />
-      <circle cx="24" cy="30" r="6" />
-      <circle cx="40" cy="30" r="6" />
-      <circle cx="32" cy="40" r="10" />
-    </svg>
+<!-- Background music -->
+<audio autoplay loop muted id="background-music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6aa52f82a0.mp3?filename=acoustic-back-in-black-10921.mp3" preload="auto"></audio>
 
-    <!-- Bow SVG -->
-    <svg class="bow" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path d="M10 30 Q18 20 26 30 Q18 40 10 30 Z" />
-      <path d="M54 30 Q46 20 38 30 Q46 40 54 30 Z" />
-      <circle cx="32" cy="30" r="8" />
-    </svg>
-  </div>
+<script>
+  // Sparkle cursor effect
+  document.body.style.cursor = 'none'; // hide default cursor
 
-  <!-- Falling stars -->
-  <script>
-    const starsCount = 30;
-    for(let i = 0; i < starsCount; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDelay = (Math.random() * 5) + 's';
-      star.style.animationDuration = (3 + Math.random() * 5) + 's';
-      document.body.appendChild(star);
-    }
-  </script>
+  window.addEventListener('mousemove', e => {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.style.left = e.clientX + 'px';
+    sparkle.style.top = e.clientY + 'px';
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+      sparkle.remove();
+    }, 1000);
+  });
+
+  // Fade in diary container on load (optional)
+  window.addEventListener('load', () => {
+    const diary = document.querySelector('.diary-container');
+    diary.style.opacity = '1';
+  });
+</script>
+
 </body>
 </html>
 
