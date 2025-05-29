@@ -76,20 +76,20 @@
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     cursor: pointer;
     transition: transform 0.2s;
-    right: -60px;
+    left: 325px;
   }
 
-  .sticky-note:nth-child(2) {
+  .sticky-note:nth-of-type(2) {
     top: 60px;
     background: #e0fff4;
     transform: rotate(2deg);
   }
-  .sticky-note:nth-child(3) {
+  .sticky-note:nth-of-type(3) {
     top: 130px;
     background: #fffcd9;
     transform: rotate(-4deg);
   }
-  .sticky-note:nth-child(4) {
+  .sticky-note:nth-of-type(4) {
     top: 200px;
     background: #ffcde8;
     transform: rotate(1deg);
@@ -103,14 +103,12 @@
 <body>
   <div class="book">
     <div class="book-title">Shravika's Diary</div>
-    <div class="sticky-note">💌 About Me</div>
-    <div class="sticky-note">💻 Skills</div>
-    <div class="sticky-note">💼 Experience</div>
   </div>
+  <div class="sticky-note">💌 About Me</div>
+  <div class="sticky-note">💻 Skills</div>
+  <div class="sticky-note">💼 Experience</div>
 </body>
 </html>
-
-
 
 
 
