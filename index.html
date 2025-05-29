@@ -3,56 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shravika Mhatre</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <title>Shravika Mhatre | Y2K Vibes</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pacifico&display=swap" rel="stylesheet" />
+  
   <style>
     body {
-      font-family: 'Poppins', Arial, sans-serif;
-      background: #121212;
-      color: #f8bbd0;
+      background: linear-gradient(135deg, #ffc0cb, #d8b4f2);
+      font-family: 'Press Start 2P', cursive, Arial, sans-serif;
+      color: #000;
       padding: 2rem;
       max-width: 800px;
       margin: auto;
+      text-align: center;
     }
-
     h1 {
-      color: #ff4081;
-      font-weight: 700;
+      font-family: 'Pacifico', cursive;
       font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 1px 1px 5px #ff80ab;
+      color: #ff69b4;
+      text-shadow: 2px 2px 6px #ff1493;
+      margin-bottom: 0.5rem;
     }
-
     .container {
-      background: #1e1e1e;
+      background: #fff0ff;
+      border-radius: 25px;
       padding: 2rem 3rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 32px rgba(255, 64, 129, 0.4);
-      max-width: 700px;
-      margin: auto;
+      box-shadow: 0 0 15px 5px #ff69b4aa;
+      position: relative;
     }
-
     p {
-      line-height: 1.7;
-      font-size: 1.15rem;
+      font-size: 0.8rem;
       margin-bottom: 1rem;
-      color: #f48fb1;
+      color: #5a005a;
+      line-height: 1.5;
     }
-
     a {
-      color: #ff80ab;
+      color: #ff1493;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
+      font-family: 'Pacifico', cursive;
     }
-
     a:hover {
-      color: #ff4081;
       text-decoration: underline;
+      color: #d100d1;
+    }
+    /* Mario pink pixel heart */
+    .pixel-heart {
+      width: 32px;
+      height: 32px;
+      background:
+        linear-gradient(to right, transparent 12px, #ff69b4 12px 20px, transparent 20px),
+        linear-gradient(to top, transparent 12px, #ff69b4 12px 20px, transparent 20px),
+        linear-gradient(to right, #ff69b4 0 4px, transparent 4px 8px, #ff69b4 8px 12px, transparent 12px 16px),
+        linear-gradient(to top, #ff69b4 0 4px, transparent 4px 8px, #ff69b4 8px 12px, transparent 12px 16px);
+      background-repeat: no-repeat;
+      background-position:
+        4px 0,
+        0 4px,
+        0 8px,
+        8px 8px;
+      margin: 0 auto 1rem;
+      animation: bounce 2s ease infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <div class="pixel-heart" title="Pixel Heart"></div>
     <h1>Hey, I'm Shravika 👋</h1>
     <p><strong>🚀 BTech in VLSI | Honours in GenAI + Quantum Computing</strong></p>
     <p>I’m deeply passionate about solving real-world problems at the intersection of hardware and intelligence. Currently exploring VLSI design, full-stack development, and cutting-edge AI.</p>
@@ -62,3 +84,4 @@
   </div>
 </body>
 </html>
+
