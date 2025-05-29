@@ -1,190 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shravika's Diary</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Caveat&family=Gloria+Hallelujah&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      background: linear-gradient(135deg, #ffe6f0, #fce1ff);
-      font-family: 'Gloria Hallelujah', cursive;
-      cursor: none;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shravika's Pixel Diary</title>
 
-    .sparkle {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: radial-gradient(circle, #ff69b4 0%, #ffc0cb 60%, transparent 100%);
-      border-radius: 50%;
-      pointer-events: none;
-      animation: sparkle-fade 1s forwards;
-    }
+<!-- Pixel font -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 
-    @keyframes sparkle-fade {
-      from { opacity: 1; transform: scale(1); }
-      to { opacity: 0; transform: scale(0.5); }
-    }
+<style>
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: #000; /* black background */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    cursor: none; /* hide default cursor for sparkle */
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
 
-    .book {
-      width: 420px;
-      height: 520px;
-      perspective: 1500px;
-      position: relative;
-    }
+  /* Container is the "open diary" */
+  .diary-container {
+    display: flex;
+    width: 760px;
+    height: 480px;
+    background: #d6a8b9;
+    border: 8px double #000;
+    border-radius: 30px;
+    box-shadow: 0 0 30px #e58ea1;
+    animation: openBook 1.2s ease forwards;
+    opacity: 0;
+    position: relative;
+    z-index: 10;
+  }
 
-    .book-inner {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 1s ease-in-out;
-    }
+  /* Page styling */
+  .page {
+    background: #fff0f5;
+    width: 50%;
+    margin: 0 1rem;
+    padding: 2rem;
+    box-shadow: inset 3px 3px 10px #f9c1d3, inset -3px -3px 10px #c28ca2;
+    border-radius: 15px;
+    position: relative;
+    overflow-y: auto;
+  }
 
-    .book.open .book-inner {
-      transform: rotateY(-180deg);
-    }
+  h1 {
+    font-size: 14px;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #000;
+  }
 
-    .cover, .pages {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      backface-visibility: hidden;
-      box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
-    }
+  p {
+    line-height: 1.8;
+    margin: 1rem 0;
+    color: #000;
+  }
 
-    .cover {
-      background: url('https://i.imgur.com/B8N3pAE.png') no-repeat center/cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 24px;
-      font-family: 'Pacifico', cursive;
-      text-shadow: 1px 1px 3px #000;
-    }
+  a {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: #ffb6c1;
+    border-radius: 10px;
+    box-shadow: 0 4px #d63384;
+    transition: transform 0.2s ease;
+  }
 
-    .pages {
-      background: #fff0f5;
-      transform: rotateY(180deg);
-      padding: 2rem;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
+  a:hover {
+    transform: scale(1.05);
+  }
 
-    .left-page, .right-page {
-      width: 48%;
-      background: #fffafc;
-      border: 2px dashed #ff9fc1;
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: inset 0 0 10px rgba(255, 192, 203, 0.3);
-    }
+  /* Stickers in corners */
+  .sticker {
+    position: absolute;
+    font-size: 24px;
+    user-select: none;
+  }
 
-    .sticky {
-      position: absolute;
-      padding: 0.5rem 1rem;
-      font-size: 14px;
-      border: 1px dashed #999;
-      border-radius: 8px;
-      transform: rotate(-10deg);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-      z-index: 5;
-    }
+  .sticker.top-left {
+    top: 15px;
+    left: 15px;
+  }
+  .sticker.top-right {
+    top: 15px;
+    right: 15px;
+  }
+  .sticker.bottom-left {
+    bottom: 15px;
+    left: 15px;
+  }
+  .sticker.bottom-right {
+    bottom: 15px;
+    right: 15px;
+  }
 
-    .sticky:hover {
-      transform: rotate(-10deg) scale(1.05);
+  /* Page open animation */
+  @keyframes openBook {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) rotateX(90deg);
     }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotateX(0deg);
+    }
+  }
 
-    .sticky.about {
-      background: lavender;
-      top: 10px;
-      left: 20px;
-    }
-    .sticky.skills {
-      background: mintcream;
-      top: 60px;
-      right: 20px;
-    }
-    .sticky.experience {
-      background: lemonchiffon;
-      bottom: 30px;
-      left: 40px;
-    }
+  /* Scrollbar style for pages */
+  .page::-webkit-scrollbar {
+    width: 6px;
+  }
+  .page::-webkit-scrollbar-thumb {
+    background-color: #ff9fc1;
+    border-radius: 3px;
+  }
 
-    .glitter-btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: linear-gradient(to right, #fbd3e9, #bb377d);
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      box-shadow: 0 0 10px pink;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
+  /* Sparkle styles */
+  .sparkle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+    background: radial-gradient(circle at center, #ff69b4 0%, #ff69b4 50%, transparent 70%);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 4px #ff69b4);
+    animation: sparkle-fade 1000ms forwards;
+    z-index: 1000;
+  }
 
-    h3 {
-      margin-top: 0;
-      color: #d63384;
+  @keyframes sparkle-fade {
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
-  </style>
+    100% {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.5);
+    }
+  }
+</style>
+
 </head>
 <body>
-  <div class="book" id="diary">
-    <div class="book-inner">
-      <div class="cover">
-        Shravika’s Diary
-        <div class="sticky about">💌 About Me</div>
-        <div class="sticky skills">💻 Skills</div>
-        <div class="sticky experience">💼 Experience</div>
-      </div>
-      <div class="pages">
-        <div class="left-page">
-          <h3>About Me 💫</h3>
-          <p>Write your story here...</p>
-        </div>
-        <div class="right-page">
-          <h3>Skills & Experience 🌸</h3>
-          <p>Tech Stack: HTML, CSS, JS, Python...</p>
-          <p>Write your experience here...</p>
-          <a class="glitter-btn" href="#">LinkedIn</a>
-          <a class="glitter-btn" href="#">GitHub</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <script>
-    const book = document.getElementById('diary');
-    const stickies = document.querySelectorAll('.sticky');
-    stickies.forEach(sticky => {
-      sticky.addEventListener('click', () => {
-        book.classList.toggle('open');
-        new Audio('https://cdn.pixabay.com/download/audio/2021/10/05/audio_2a61488ef7.mp3?filename=page-flip-9-99430.mp3').play();
-      });
-    });
+<div class="diary-container" aria-label="Pixel diary open book">
+  <!-- Left Page -->
+  <section class="page" aria-label="Left diary page">
+    <div class="sticker top-left">💌</div>
+    <h1>Hey, I'm Shravika 💫</h1>
+    <p><strong>🚀 BTech in VLSI | Honours in GenAI + Quantum Computing</strong></p>
+    <p>I’m deeply passionate about solving real-world problems at the intersection of hardware and intelligence. Currently exploring VLSI design, full-stack development, and cutting-edge AI.</p>
+  </section>
 
-    window.addEventListener('mousemove', e => {
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      sparkle.style.left = e.pageX + 'px';
-      sparkle.style.top = e.pageY + 'px';
-      document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 800);
-    });
-  </script>
+  <!-- Right Page -->
+  <section class="page" aria-label="Right diary page">
+    <div class="sticker top-right">☁️</div>
+    <p>I love building, learning fast, and working on ideas that can scale.</p>
+    <p>📫 Reach out: <a href="https://www.linkedin.com/in/shravika-mhatre-1364bb321/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+    <p>🛠️ Tech so far: HTML, CSS, Git (learning JS, React, and Python)</p>
+    <div class="sticker bottom-right">🧸</div>
+  </section>
+</div>
+
+<!-- Background music -->
+<audio autoplay loop muted id="background-music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6aa52f82a0.mp3?filename=acoustic-back-in-black-10921.mp3" preload="auto"></audio>
+
+<script>
+  // Sparkle cursor effect
+  document.body.style.cursor = 'none'; // hide default cursor
+
+  window.addEventListener('mousemove', e => {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.style.left = e.clientX + 'px';
+    sparkle.style.top = e.clientY + 'px';
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+      sparkle.remove();
+    }, 1000);
+  });
+
+  // Fade in diary container on load (optional)
+  window.addEventListener('load', () => {
+    const diary = document.querySelector('.diary-container');
+    diary.style.opacity = '1';
+  });
+</script>
+
 </body>
 </html>
 
