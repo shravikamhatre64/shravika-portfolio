@@ -119,6 +119,36 @@
     background-color: #ff9fc1;
     border-radius: 3px;
   }
+  /* Responsive adjustments */
+@media (max-width: 640px) {
+  #book {
+    width: 90vw;  /* Make book width 90% of viewport on small screens */
+    height: auto;
+    min-height: 400px;
+  }
+  .page {
+    position: relative; /* stack pages instead of overlapping */
+    transform: none !important; /* disable flip transform */
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    height: auto;
+  }
+  #flip-btn {
+    display: none; /* hide flip button on small screens */
+  }
+  body {
+    padding: 1rem;
+    height: auto;
+    align-items: flex-start;
+  }
+  h1 {
+    font-size: 1.2rem;
+  }
+  p, a {
+    font-size: 0.7rem;
+  }
+}
+
 </style>
 
 </head>
