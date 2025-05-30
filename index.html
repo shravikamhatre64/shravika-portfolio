@@ -9,7 +9,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('https://i.ibb.co/SDv95FbM/download-1.jpg') no-repeat center center fixed;
+      background: url('https://i.ibb.co/5x4Gb271/download-3.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Press Start 2P', cursive;
       color: #222;
@@ -38,24 +38,18 @@
     }
 
     .menu button {
-      background: #555555;
-      border: none;
-      color: #ffffff;
-      padding: 0.6rem 1.2rem;
-      margin: 0.5rem;
-      border-radius: 10px;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 11px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px #333333;
-    }
-
-    .menu button:hover {
-      background: #a7d8ba;
-      color: #fff;
-      transform: scale(1.05);
-    }
+  font-size: 7px;
+  padding: 0.3rem 0.7rem;
+  margin: 0.2rem 0;
+  background: #f8c1d8;
+  border: none;
+  color: #555;
+  border-radius: 10px;
+  box-shadow: 0 3px #e18ab9;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
     .page {
       display: none;
@@ -71,20 +65,20 @@
 
     .page button {
   margin-top: 1.5rem;
-  background: #555555;
+  background: #f8c1d8;
   border: none;
-  color: #ffffff;
+  color: #555;
   padding: 0.6rem 1.2rem;
   border-radius: 12px;
   font-family: 'Press Start 2P', cursive;
   font-size: 10px;
   cursor: pointer;
-  box-shadow: 0 4px #333333;
+  box-shadow: 0 3px #e18ab9;
   transition: all 0.3s ease;
 }
 
     .page button:hover {
-  background: #a7d8ba;
+  background: #f4a6c7;
   color: #fff;
 }
 
@@ -118,10 +112,15 @@
     }
 
     /* Decorative sparkles on hover */
-    .menu button:hover::after {
-      content: '✨';
-      margin-left: 0.5rem;
-    }
+    .menu button:hover {
+  background: #f4a6c7;
+  color: #fff;
+}
+
+.menu button:hover::after {
+  content: ' ✨';
+  margin-left: 0.5rem;
+}
 
     /* Slight text shadow for readability */
     body, .page p, h1 {
@@ -134,32 +133,102 @@
     }
 
     .socials a {
-      background: #ffffffcc;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 10px;
-      color: #555;
-      font-family: 'Press Start 2P', cursive;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
+  background: #f8c1d8;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 10px;
+  color: #555;
+  font-family: 'Press Start 2P', cursive;
+  box-shadow: 0 3px #e18ab9;
+  transition: all 0.3s ease;
+}
 
     .socials a:hover {
-      background: #a7d8ba;
-      color: #fff;
-      transform: scale(1.05);
+  background: #f4a6c7;
+  color: #fff;
+  transform: scale(1.05);
+}
+    .camera-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .camera-img {
+      max-width: 150vw;
+      height: auto;
+    }
+
+    .camera-screen {
+      position: absolute;
+      top: 40%;
+      left: 32%;
+      width: 42%;
+      height: 34%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      background: transparent;
+      padding: 0.5rem;
+    }
+
+    .camera-screen h1 {
+      font-size: 7px;
+      margin-bottom: 0.4rem;
+      color: #555;
+    }
+    .menu button:hover,
+    .page button:hover,
+    .socials a:hover {
+      box-shadow: 0 0 12px #f4a6c7, 0 0 24px #f4a6c7;
+    }
+
+    .camera-wrapper {
+      animation: floatCamera 6s ease-in-out infinite;
+    }
+
+    @keyframes floatCamera {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .page {
+      transform: translateX(20px);
+      transition: all 0.5s ease;
+      opacity: 0;
+    }
+
+    .page.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .corner-sticker {
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      font-size: 14px;
+      z-index: 5;
     }
 </style>
 </head>
 <body>
-  <div id="home">
-    <h1 style="text-align: center; width: 100%; color: #555555;">Hey, I’m Shravika</h1>
+  <div id="home" class="camera-wrapper">
+  <img src="https://i.ibb.co/hJCsdcJF/Bone-White-Blue-Groovy-You-Matter-Desktop-Wallpaper-1-removebg-preview-1.png" alt="digital camera" class="camera-img" />
+  
+  <div class="camera-screen">
+    <h1 style="text-align: left; margin-left: -0.5rem;">Hey, I’m Shravika &lt;3</h1>
     <div class="menu">
       <button onclick="showPage('about')">💌 About Me</button>
       <button onclick="showPage('skills')">💻 Skills</button>
       <button onclick="showPage('experience')">💼 Experience</button>
     </div>
+  </div>
+</div>
     
   </div>
   <div id="about" class="page">
