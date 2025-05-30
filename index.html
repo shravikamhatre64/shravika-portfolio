@@ -4,40 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shravika's Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: url('https://i.ibb.co/4zpjBtW/Studio-Ghibli-Wallpaper.jpg') no-repeat center center fixed;
+      background: url('https://i.ibb.co/SDv95FbM/download-1.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Press Start 2P', cursive;
-      color: #fff;
+      color: #222;
       display: flex;
       justify-content: center;
+      flex-direction: column;
       align-items: center;
       height: 100vh;
       overflow: hidden;
       cursor: url('https://cur.cursors-4u.net/anime/ani-12/ani1135.cur'), auto;
-    }
-
-    .screen {
-      width: 750px;
-      height: 70vh;
-      max-width: 95vw;
-      background: #ffffff;
-      padding: 2.5rem;
-      color: #000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border-radius: 30px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      position: relative;
-      z-index: 10;
-      overflow: hidden;
     }
 
     .screen h1 {
@@ -56,9 +38,9 @@
     }
 
     .menu button {
-      background: #f8c1d8;
+      background: #555555;
       border: none;
-      color: #000;
+      color: #ffffff;
       padding: 0.6rem 1.2rem;
       margin: 0.5rem;
       border-radius: 10px;
@@ -66,11 +48,11 @@
       font-size: 11px;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px #e75480;
+      box-shadow: 0 4px #333333;
     }
 
     .menu button:hover {
-      background: #e75480;
+      background: #a7d8ba;
       color: #fff;
       transform: scale(1.05);
     }
@@ -79,77 +61,152 @@
       display: none;
       font-size: 11px;
       line-height: 1.8;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      max-width: 800px;
+      margin-top: 2rem;
     }
 
     .page button {
-      margin-top: 1.5rem;
-      background: #ffc0cb;
-      border: none;
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 10px pink;
-      transition: all 0.3s ease;
-    }
+  margin-top: 1.5rem;
+  background: #555555;
+  border: none;
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px #333333;
+  transition: all 0.3s ease;
+}
 
     .page button:hover {
-      background: #ff69b4;
-    }
+  background: #a7d8ba;
+  color: #fff;
+}
 
-
+.page button:hover::after {
+  content: ' ✨';
+  margin-left: 0.4rem;
+}
+      
+      10% {
+        opacity: 1;
+      }
+      50% {
+        transform: translate(100vw, 30vh) rotate(45deg);
+      }
       100% {
-        transform: translateY(70vh) scale(0.5);
+        transform: translate(120vw, -10vh) rotate(360deg);
         opacity: 0;
       }
     }
-  </style>
+    /* Smooth fade transition */
+    .page {
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    .page.active {
+      display: flex !important;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Decorative sparkles on hover */
+    .menu button:hover::after {
+      content: '✨';
+      margin-left: 0.5rem;
+    }
+
+    /* Slight text shadow for readability */
+    body, .page p, h1 {
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .socials {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .socials a {
+      background: #ffffffcc;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 10px;
+      color: #555;
+      font-family: 'Press Start 2P', cursive;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .socials a:hover {
+      background: #a7d8ba;
+      color: #fff;
+      transform: scale(1.05);
+    }
+</style>
 </head>
 <body>
   <div id="home">
-      <h1 style="text-align: center; width: 100%;">Hey, I’m Shravika! 💖</h1>
-      <div class="menu">
-        <button onclick="showPage('about')">💌 About Me</button>
-        <button onclick="showPage('skills')">💻 Skills</button>
-        <button onclick="showPage('experience')">💼 Experience</button>
-      
+    <h1 style="text-align: center; width: 100%; color: #555555;">Hey, I’m Shravika</h1>
+    <div class="menu">
+      <button onclick="showPage('about')">💌 About Me</button>
+      <button onclick="showPage('skills')">💻 Skills</button>
+      <button onclick="showPage('experience')">💼 Experience</button>
+    </div>
     
-    
-<div id="about" class="page">
-      <p>🎓 I’m a B.Tech student at KJ Somaiya College of Engineering, specializing in VLSI and passionately exploring the synergy of tech, creativity, and community.</p>
-      <p>💡 I’m the founder of <strong>Asteria Core</strong> — a handmade jewelry brand that’s sold over 1000 pieces! From concept to sale, I’ve loved building it all.</p>
-      <p>🌟 Whether it’s leading events, crafting brands, or writing code, I bring heart, hustle, and a whole lot of sparkle to everything I do.</p>
-      <button onclick="goBack()">← Go Back</button>
+  </div>
+  <div id="about" class="page">
+    <p>🎓 I’m a B.Tech student at KJ Somaiya College of Engineering, specializing in VLSI and passionately exploring the synergy of tech, creativity, and community.</p>
+        <p>🌟 I aspire to learn, to lead, and above all, to inspire.</p><div class="socials">
+      <a href="https://linkedin.com/in/shravika-mhatre-1364bb321" target="_blank">🔗 LinkedIn</a>
+      <a href="https://github.com/shravikamhatre64" target="_blank">🐱 GitHub</a>
     </div>
-    <div id="skills" class="page">
-      <p>🛠️ <strong>Languages:</strong> C, C++, Python, HTML, CSS</p>
-      <p>🎨 <strong>Design Tools:</strong> Canva, Figma</p>
-      <p>🗣️ <strong>Soft Skills:</strong> Leadership, Public Speaking, Cold-email Marketing, Event Management</p>
-      <button onclick="goBack()">← Go Back</button>
-    </div>
-    <div id="experience" class="page">
-      <p>👑 <strong>Founder – Asteria Core:</strong> Launched, scaled, and marketed a brand with 1000+ handmade jewelry sales.</p>
-      <p>🌊 <strong>Joint Chief – SAHAS:</strong> Coordinated beach cleanups, donation drives, and community events.</p>
-      <p>📢 <strong>Outreach & Marketing – Adval:</strong> Designed and ran outreach campaigns for 500+ startup founders.</p>
-      <button onclick="goBack()">← Go Back</button>
-    </div>
+    <button onclick="goBack()">← Go Back</button>
+  </div>
+  <div id="skills" class="page">
+    <p>🛠️ <strong>Languages:</strong> C, C++, Python, HTML, CSS</p>
+    <p>🎨 <strong>Design Tools:</strong> Canva, Figma</p>
+    <p>🗣️ <strong>Soft Skills:</strong> Leadership, Public Speaking, Cold-email Marketing, Event Management</p>
+    <button onclick="goBack()">← Go Back</button>
+  </div>
+  <div id="experience" class="page">
+    <p>👑 <strong>Founder – Asteria Core:</strong> Launched, scaled, and marketed a brand with 1000+ handmade jewelry sales.</p>
+    <p>🌊 <strong>Joint Chief – SAHAS:</strong> Coordinated beach cleanups, donation drives, and community events.</p>
+    <p>📢 <strong>Outreach & Marketing – Adval:</strong> Designed and ran outreach campaigns for 500+ startup founders.</p>
+    <button onclick="goBack()">← Go Back</button>
   </div>
   <script>
     function showPage(pageId) {
-      document.getElementById('home').style.display = 'none';
-      document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
-      document.getElementById(pageId).style.display = 'flex';
-    }
+  document.getElementById('home').style.display = 'none';
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+    page.style.display = 'none';
+  });
+  const selected = document.getElementById(pageId);
+  selected.style.display = 'flex';
+  setTimeout(() => selected.classList.add('active'), 10);
+}
 
     function goBack() {
-      document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
-      document.getElementById('home').style.display = 'block';
-    }
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+    page.style.display = 'none';
+  });
+  document.getElementById('home').style.display = 'block';
+}
   </script>
+
 </body>
 </html>
+
+
 
 
 
